@@ -6,6 +6,8 @@ import Cursor from './components/Cursor'
 import ScrollToTop from './components/ScrollToTop'
 import WhatsAppButton from './components/WhatsAppButton'
 import AvailabilityBanner from './components/AvailabilityBanner'
+import CookieBanner from './components/CookieBanner'
+import Analytics from './components/Analytics'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import About from './pages/About'
@@ -21,6 +23,7 @@ export default function App() {
     <HelmetProvider>
       <ScrollToTop />
       <Cursor />
+      <Analytics />
       <AvailabilityBanner />
       <Navbar />
       <main>
@@ -38,6 +41,7 @@ export default function App() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <CookieBanner />
     </HelmetProvider>
   )
 }

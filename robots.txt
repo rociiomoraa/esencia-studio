@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# No indexar rutas innecesarias
+Disallow: /node_modules/
+Disallow: /src/
+
+# Sitemap
+Sitemap: https://esenciastudio.es/sitemap.xml

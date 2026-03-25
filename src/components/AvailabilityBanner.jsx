@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useIsMobile } from '../hooks/useMediaQuery'
 
-const MENSAJE = 'Disponible para nuevos proyectos en abril 2025'
+const MENSAJE = 'Disponible para nuevos proyectos en abril 2026'  // ← actualiza cada mes
 
 export default function AvailabilityBanner() {
   const [visible, setVisible] = useState(true)
