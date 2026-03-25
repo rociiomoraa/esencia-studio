@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { useIsMobile } from '../hooks/useMediaQuery'
 
-const PHONE = '34600000000' // ← Cambia por tu número real
+const PHONE = '34622337967' // ← Cambia por tu número real
 
 export default function WhatsAppButton() {
   const [hovered, setHovered] = useState(false)
