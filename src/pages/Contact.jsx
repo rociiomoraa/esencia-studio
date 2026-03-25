@@ -84,7 +84,7 @@ export default function Contact() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.9rem', marginBottom: '2.5rem' }}>
                 {[
                   { icon: Mail, label: 'hola@esenciastudio.es', href: 'mailto:hola@esenciastudio.es' },
-                  { icon: Phone, label: '+34 600 000 000', href: 'tel:+34600000000' },
+                  { icon: Phone, label: '+34 622 337 967', href: 'tel:+34600000000' },
                   { icon: MapPin, label: 'España · Trabajo remoto', href: null },
                 ].map(({ icon: Icon, label, href }) => (
                   <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '.9rem' }}>
@@ -103,7 +103,7 @@ export default function Contact() {
               <div style={{ display: 'flex', gap: '.7rem' }}>
                 {[
                   { icon: Instagram, href: 'https://instagram.com/esenciastudio', label: 'Instagram' },
-                  { icon: Linkedin, href: 'https://linkedin.com/in/rociogarcia', label: 'LinkedIn' },
+                  { icon: Linkedin, href: 'https://linkedin.com/in/rociiogarciia', label: 'LinkedIn' },
                   { icon: Mail, href: 'mailto:hola@esenciastudio.es', label: 'Email' },
                 ].map(({ icon: Icon, href, label }) => (
                   <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
