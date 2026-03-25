@@ -13,6 +13,7 @@ import Portfolio from './pages/Portfolio'
 import Pricing from './pages/Pricing'
 import Contact from './pages/Contact'
 import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import Privacidad from './pages/Privacidad'
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/precios" element={<Pricing />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/privacidad" element={<Privacidad />} />
         </Routes>
       </main>

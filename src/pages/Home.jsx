@@ -13,24 +13,29 @@ const services = [
   { icon: Palette, num: '04', name: 'Branding & Identidad', desc: 'Logotipo, paleta, tipografía. La imagen que hace que tu negocio se recuerde.' },
   { icon: Bot, num: '05', name: 'Marketing con IA', desc: 'Estrategias potenciadas con inteligencia artificial para resultados más rápidos y precisos.' },
 ]
+
 const whyUs = [
   { icon: Zap, name: 'Entrega rápida', desc: 'Gracias al uso de IA y herramientas modernas, entregamos proyectos en la mitad de tiempo sin sacrificar calidad.' },
   { icon: Target, name: 'Webs que convierten', desc: 'Cada decisión de diseño tiene un propósito: que tus visitantes se conviertan en clientes reales.' },
   { icon: Heart, name: 'Atención personalizada', desc: 'Somos un estudio pequeño por elección. Cada cliente importa y recibe tiempo y dedicación real.' },
   { icon: BarChart2, name: 'Transparencia total', desc: 'Informes claros, comunicación directa. Sabrás exactamente qué estamos haciendo y por qué.' },
 ]
+
 const stats = [
   { num: '100%', label: 'Proyectos personalizados' },
   { num: '< 24h', label: 'Tiempo de respuesta' },
   { num: '2+', label: 'Años de formación' },
   { num: '+IA', label: 'Siempre potenciado' },
 ]
+
 const marqueeItems = ['Diseño Web', 'WordPress', 'SEO', 'Redes Sociales', 'Branding', 'IA', 'Elementor', 'Marketing Digital', 'React', 'Figma']
+
 const testimonials = [
   { name: 'María López', role: 'Dueña de tienda online', text: 'Rocío transformó completamente mi presencia online. Mi web nueva convierte el doble que la anterior y el SEO está funcionando de maravilla.', initial: 'ML' },
   { name: 'Carlos Fernández', role: 'Restaurante El Rincón', text: 'Profesional, rápida y muy detallista. Entendió perfectamente lo que necesitaba para mi negocio y entregó mucho más de lo esperado.', initial: 'CF' },
   { name: 'Ana Martínez', role: 'Consultora independiente', text: 'Gracias a Esencia Studio conseguí mis primeros clientes online. La web es preciosa y el SEO me trajo resultados en menos de 2 meses.', initial: 'AM' },
 ]
+
 const faqs = [
   { q: '¿Cuánto tiempo tarda en estar lista mi web?', a: 'Entre 1 y 3 semanas según el proyecto. Una landing page puede estar en 5-7 días. Una web completa, entre 2 y 3 semanas.' },
   { q: '¿Necesito dominio y hosting antes de contactarte?', a: 'No. Puedo ayudarte a elegir y contratar lo más adecuado para tu proyecto, o trabajar con los que ya tengas.' },
@@ -70,7 +75,6 @@ export default function Home() {
   const isMobile = useIsMobile()
   const isTablet = useIsTablet()
 
-  const pad = isMobile ? '0 1.5rem' : '0 4rem'
   const sectionPad = isMobile ? '4rem 1.5rem' : '8rem 4rem'
 
   return (
@@ -79,27 +83,35 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section style={{
-        minHeight: '100vh', position: 'relative', overflow: 'hidden',
-        display: 'grid',
-        gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
+        minHeight: isMobile ? 'auto' : '100vh',
+        position: 'relative', 
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         alignItems: 'center',
-        padding: isMobile ? '0 1.5rem' : '0 4rem',
-        gap: '2rem',
+        justifyContent: 'center',
+        padding: isMobile ? '7rem 1.5rem 4rem' : '0 4rem',
+        gap: isMobile ? '3rem' : '2rem',
       }}>
         <OrbBackground />
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 700, paddingTop: isMobile ? '7rem' : '8rem', paddingBottom: isMobile ? '5rem' : '6rem' }}>
+        
+        {/* Contenido Texto */}
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 700, width: '100%' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2, duration: .6 }}
             style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'var(--lila-pale)', border: '1px solid var(--lila-mid)', padding: '.35rem .9rem', borderRadius: '100px', marginBottom: '1.8rem' }}>
             <motion.span style={{ width: 6, height: 6, background: 'var(--lila-deep)', borderRadius: '50%' }} animate={{ opacity: [1,.3,1] }} transition={{ duration: 2, repeat: Infinity }} />
             <span style={{ fontSize: '.62rem', fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--lila-deep)' }}>Estudio Digital · Disponible para proyectos</span>
           </motion.div>
-          <HeroTitle delay={.35}><span style={{ fontFamily: 'var(--font-serif)', fontSize: isMobile ? 'clamp(4rem,16vw,6rem)' : 'clamp(4rem,8vw,9rem)', fontWeight: 300, lineHeight: .9, letterSpacing: '-.03em', display: 'block' }}>Esencia</span></HeroTitle>
-          <HeroTitle delay={.55}><span style={{ fontFamily: 'var(--font-serif)', fontSize: isMobile ? 'clamp(4rem,16vw,6rem)' : 'clamp(4rem,8vw,9rem)', fontWeight: 300, lineHeight: .9, letterSpacing: '-.03em', fontStyle: 'italic', color: 'var(--lila-deep)', display: 'block' }}>Studio.</span></HeroTitle>
+          
+          <HeroTitle delay={.35}><span style={{ fontFamily: 'var(--font-serif)', fontSize: isMobile ? 'clamp(4rem,15vw,6rem)' : 'clamp(4rem,8vw,9rem)', fontWeight: 300, lineHeight: .9, letterSpacing: '-.03em', display: 'block' }}>Esencia</span></HeroTitle>
+          <HeroTitle delay={.55}><span style={{ fontFamily: 'var(--font-serif)', fontSize: isMobile ? 'clamp(4rem,15vw,6rem)' : 'clamp(4rem,8vw,9rem)', fontWeight: 300, lineHeight: .9, letterSpacing: '-.03em', fontStyle: 'italic', color: 'var(--lila-deep)', display: 'block' }}>Studio.</span></HeroTitle>
+          
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9, duration: .7 }}
             style={{ fontSize: 'clamp(.88rem,1.5vw,1.05rem)', fontWeight: 300, color: 'var(--gray)', lineHeight: 1.75, maxWidth: 460, marginTop: '1.5rem', marginBottom: '2.5rem' }}>
             Diseño web, marketing digital y presencia online para negocios que quieren{' '}
             <strong style={{ color: 'var(--black)', fontWeight: 500 }}>crecer de verdad</strong>. Webs que convierten, estrategias que funcionan.
           </motion.p>
+          
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: .7 }}
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link to="/contacto"><button className="btn-primary">Empieza tu proyecto <ArrowRight size={14} /></button></Link>
@@ -107,10 +119,10 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Stats — solo desktop */}
+        {/* Stats — Desktop */}
         {!isMobile && (
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.3, duration: .8 }}
-            style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '8rem', paddingBottom: '6rem' }}>
+            style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {stats.map((s, i) => (
               <motion.div key={i} whileHover={{ x: -4, scale: 1.02 }}
                 style={{ background: 'var(--white)', border: '1px solid var(--gray-light)', borderRadius: 18, padding: '1.2rem 1.6rem', boxShadow: '0 4px 20px rgba(0,0,0,.05)', minWidth: 160 }}>
@@ -125,10 +137,10 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* Stats móvil — fila horizontal */}
+        {/* Stats móvil — Corregido para que no se superponga */}
         {isMobile && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }}
-            style={{ position: 'absolute', bottom: '4.5rem', left: '1.5rem', right: '1.5rem', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.6rem' }}>
+            style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.6rem', width: '100%' }}>
             {stats.map((s, i) => (
               <div key={i} style={{ background: 'var(--white)', border: '1px solid var(--gray-light)', borderRadius: 14, padding: '.9rem 1rem', boxShadow: '0 4px 20px rgba(0,0,0,.05)' }}>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: 'var(--lila-deep)', lineHeight: 1 }}>{s.num}</div>
@@ -138,7 +150,7 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* Bottom bar — solo desktop */}
+        {/* Bottom bar — Desktop */}
         {!isMobile && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
             style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: '1px solid var(--gray-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.3rem 4rem', background: 'rgba(250,248,253,.7)', backdropFilter: 'blur(10px)', zIndex: 2 }}>
@@ -256,16 +268,6 @@ export default function Home() {
               </StaggerChild>
             ))}
           </div>
-          <Reveal delay={.3}>
-            <div style={{ textAlign: 'center', marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? '1.2rem' : '2rem', flexWrap: 'wrap' }}>
-              {['100% satisfechos', 'Sin letra pequeña', 'Resultados medibles'].map(item => (
-                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-                  <span style={{ color: 'var(--lila-deep)' }}>✦</span>
-                  <span style={{ fontSize: '.78rem', color: 'var(--gray)', fontWeight: 500 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -281,29 +283,12 @@ export default function Home() {
                     Preguntas <em style={{ fontStyle: 'italic', color: 'var(--lila-deep)' }}>frecuentes</em>
                   </h2>
                 </Reveal>
-                {!isMobile && (
-                  <Reveal delay={.2}>
-                    <p style={{ fontSize: '.85rem', lineHeight: 1.8, color: 'var(--gray)', marginBottom: '1.5rem' }}>Si no encuentras tu duda, escríbeme directamente.</p>
-                    <Link to="/contacto">
-                      <motion.button whileHover={{ scale: 1.03 }} style={{ padding: '.8rem 1.6rem', background: 'var(--lila-pale)', border: '1px solid var(--lila-mid)', borderRadius: '100px', fontSize: '.78rem', fontWeight: 600, color: 'var(--lila-deep)', cursor: 'pointer' }}>
-                        Hacer una pregunta →
-                      </motion.button>
-                    </Link>
-                  </Reveal>
-                )}
               </div>
               <Reveal delay={.1}>
                 <div>
                   {faqs.map((faq, i) => (
                     <FAQItem key={i} q={faq.q} a={faq.a} isOpen={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? null : i)} />
                   ))}
-                  {isMobile && (
-                    <Link to="/contacto" style={{ display: 'block', marginTop: '1.5rem' }}>
-                      <motion.button whileHover={{ scale: 1.03 }} style={{ padding: '.8rem 1.6rem', background: 'var(--lila-pale)', border: '1px solid var(--lila-mid)', borderRadius: '100px', fontSize: '.78rem', fontWeight: 600, color: 'var(--lila-deep)', cursor: 'pointer', width: '100%' }}>
-                        ¿Más dudas? Escríbeme →
-                      </motion.button>
-                    </Link>
-                  )}
                 </div>
               </Reveal>
             </div>
@@ -317,15 +302,13 @@ export default function Home() {
           <Reveal>
             <motion.div whileHover={{ scale: 1.01 }}
               style={{ background: 'linear-gradient(135deg, var(--lila-deep), #5a3a9e)', borderRadius: 24, padding: isMobile ? '3rem 2rem' : '5rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-              <motion.div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,255,255,.06), transparent)', pointerEvents: 'none' }} />
               <div style={{ position: 'relative', zIndex: 2 }}>
                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: isMobile ? 'clamp(2rem,8vw,2.8rem)' : 'clamp(2.5rem,5vw,4.5rem)', fontWeight: 300, color: 'white', lineHeight: 1.1, marginBottom: '1.2rem', letterSpacing: '-.02em' }}>
                   ¿Listo para una <em style={{ fontStyle: 'italic', color: 'var(--lila-soft)' }}>web que trabaje</em> por ti?
                 </h2>
-                <p style={{ fontSize: isMobile ? '.88rem' : '1rem', color: 'rgba(255,255,255,.55)', marginBottom: '2rem', maxWidth: 480, margin: '0 auto 2rem' }}>Primera consulta gratuita. Sin compromiso. Sin jerga técnica.</p>
+                <p style={{ fontSize: isMobile ? '.88rem' : '1rem', color: 'rgba(255,255,255,.55)', marginBottom: '2rem', maxWidth: 480, margin: '0 auto 2rem' }}>Primera consulta gratuita. Sin compromiso.</p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link to="/contacto"><motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .97 }} style={{ padding: '.9rem 2rem', background: 'white', color: 'var(--lila-deep)', border: 'none', borderRadius: '100px', fontSize: '.82rem', fontWeight: 700, cursor: 'pointer', letterSpacing: '.04em' }}>Empieza ahora →</motion.button></Link>
-                  <Link to="/precios"><motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .97 }} style={{ padding: '.9rem 2rem', background: 'transparent', color: 'white', border: '1.5px solid rgba(255,255,255,.3)', borderRadius: '100px', fontSize: '.82rem', fontWeight: 500, cursor: 'pointer' }}>Ver precios</motion.button></Link>
                 </div>
               </div>
             </motion.div>
@@ -340,7 +323,6 @@ function ServiceCard({ icon: Icon, num, name, desc }) {
   return (
     <motion.div whileHover={{ y: -6, boxShadow: '0 24px 50px rgba(124,92,191,.1)', borderColor: 'var(--lila-mid)' }}
       style={{ background: 'var(--white)', border: '1px solid var(--gray-light)', borderRadius: 20, padding: '2rem', position: 'relative', overflow: 'hidden', cursor: 'default', transition: 'border-color .3s', width: '100%', height: '100%', boxSizing: 'border-box' }}>
-      <motion.div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(to right, var(--lila-soft), var(--lila-deep))', transformOrigin: 'left', scaleX: 0 }} whileHover={{ scaleX: 1 }} transition={{ duration: .4 }} />
       <div style={{ width: 46, height: 46, background: 'var(--lila-pale)', borderRadius: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.3rem', border: '1px solid var(--lila-mid)' }}>
         <Icon size={20} color="var(--lila-deep)" />
       </div>
