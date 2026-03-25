@@ -28,7 +28,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
                 { icon: Instagram, href: 'https://instagram.com/esenciastudio', label: 'Instagram' },
-                { icon: Linkedin, href: 'https://linkedin.com/in/rociogarcia', label: 'LinkedIn' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/rociiogarciia/', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:hola@esenciastudio.es', label: 'Email' },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
