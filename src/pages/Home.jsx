@@ -114,7 +114,7 @@ export default function Home() {
           
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: .7 }}
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/contacto"><button className="btn-primary">Empieza tu proyecto <ArrowRight size={14} /></button></Link>
+            <Link to="/contacto"><button className="btn-primary">Cuéntanos tu idea <ArrowRight size={14} /></button></Link>
             <Link to="/servicios"><button className="btn-ghost">Ver servicios</button></Link>
           </motion.div>
         </div>

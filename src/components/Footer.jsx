@@ -116,7 +116,7 @@ export default function Footer() {
               textDecoration: 'none' 
             }}
           >
-            Empieza tu proyecto →
+            Cuéntanos tu idea →
           </MotionLink>
         </div>
       </div>
