@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react'
+import emailjs from '@emailjs/browser' // 1. Importamos EmailJS
 import SEO from '../components/SEO'
-import { PageTransition, OrbBackground } from '../components/Animations'
+import { PageTransition } from '../components/Animations'
 import { useIsMobile } from '../hooks/useMediaQuery'
 
-const FORMSPREE_ID = 'mpqozgkv'
+// ── CONFIGURACIÓN EMAILJS ──────────────────────────────────────────────────
+const SERVICE_ID = 'service_4urxxib'
+const TEMPLATE_ID = 'template_9bsvhkd'
+const PUBLIC_KEY = 'aqj_lvltEoBaP5hu8'
+// ─────────────────────────────────────────────────────────────────────────────
 
 const servicios = ['Diseño & Desarrollo Web', 'Posicionamiento SEO', 'Redes Sociales', 'Branding & Identidad', 'Marketing con IA', 'Otro / No sé aún']
 const presupuestos = ['Menos de 300€', '300€ – 600€', '600€ – 1.000€', 'Más de 1.000€', 'Aún no lo sé']
@@ -20,15 +25,23 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
+
+    // Preparamos los parámetros para que coincidan con tus {{etiquetas}} de EmailJS
+    const templateParams = {
+      nombre: form.nombre,
+      email: form.email,
+      telefono: form.telefono,
+      servicio: form.servicio,
+      presupuesto: form.presupuesto,
+      mensaje: form.mensaje,
+    }
+
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      })
-      setStatus(res.ok ? 'success' : 'error')
-      if (res.ok) setForm({ nombre: '', email: '', telefono: '', servicio: '', presupuesto: '', mensaje: '' })
-    } catch {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      setStatus('success')
+      setForm({ nombre: '', email: '', telefono: '', servicio: '', presupuesto: '', mensaje: '' })
+    } catch (error) {
+      console.error('Error al enviar:', error)
       setStatus('error')
     }
   }
@@ -79,7 +92,7 @@ export default function Contact() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.9rem', marginBottom: '2.5rem' }}>
                 {[
                   { icon: Mail, label: 'hola@esenciastudio.es', href: 'mailto:hola@esenciastudio.es' },
-                  { icon: Phone, label: '+34 622 337 967', href: 'tel:+34600000000' },
+                  { icon: Phone, label: '+34 622 337 967', href: 'tel:+34622337967' },
                   { icon: MapPin, label: 'España · Trabajo remoto', href: null },
                 ].map(({ icon: Icon, label, href }) => (
                   <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '.9rem' }}>
