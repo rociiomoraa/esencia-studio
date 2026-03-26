@@ -161,7 +161,7 @@ export default function Contact() {
             <motion.div initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }}
               style={{ textAlign: 'center', padding: '5rem 2rem', background: 'var(--lila-pale)', border: '1px solid var(--lila-mid)', borderRadius: 24 }}>
               <CheckCircle size={48} color="var(--lila-deep)" style={{ marginBottom: '1.5rem' }} />
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', fontWeight: 400, marginBottom: '1rem' }}>¡Mensaje enviado! 🎉</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', fontWeight: 400, marginBottom: '1rem' }}>¡Mensaje enviado!</h2>
               <p style={{ fontSize: '.95rem', color: 'var(--gray)', lineHeight: 1.7 }}>Gracias por contactar con Esencia Studio. Te responderé en menos de 24 horas.</p>
             </motion.div>
           ) : (

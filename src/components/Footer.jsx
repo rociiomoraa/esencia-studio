@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Instagram, Linkedin, Mail } from 'lucide-react'
 
+// Creamos un componente motion a partir del Link de react-router
+const MotionLink = motion(Link);
+
 export default function Footer() {
   return (
     <footer style={{
@@ -94,10 +97,27 @@ export default function Footer() {
           <p style={{ fontSize: '.7rem', color: 'rgba(255,255,255,.25)' }}>
             © {new Date().getFullYear()} Esencia Studio · Rocío García · Todos los derechos reservados
           </p>
-          <motion.a href="/contacto" whileHover={{ scale: 1.04 }} whileTap={{ scale: .97 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.6rem 1.4rem', background: 'var(--lila-deep)', borderRadius: '100px', fontSize: '.75rem', fontWeight: 600, color: 'white', textDecoration: 'none' }}>
+          
+          {/* BOTÓN ACTUALIZADO A LINK DE REACT-ROUTER */}
+          <MotionLink 
+            to="/contacto" 
+            whileHover={{ scale: 1.04 }} 
+            whileTap={{ scale: .97 }}
+            style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '.5rem', 
+              padding: '.6rem 1.4rem', 
+              background: 'var(--lila-deep)', 
+              borderRadius: '100px', 
+              fontSize: '.75rem', 
+              fontWeight: 600, 
+              color: 'white', 
+              textDecoration: 'none' 
+            }}
+          >
             Empieza tu proyecto →
-          </motion.a>
+          </MotionLink>
         </div>
       </div>
 
