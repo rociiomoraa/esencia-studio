@@ -5,12 +5,7 @@ import SEO from '../components/SEO'
 import { PageTransition, OrbBackground } from '../components/Animations'
 import { useIsMobile } from '../hooks/useMediaQuery'
 
-// ── INSTRUCCIONES FORMSPREE ──────────────────────────────────────────────────
-// 1. Ve a https://formspree.io y crea una cuenta gratis
-// 2. Crea un nuevo formulario → copia tu ID (ej: xpzvwkjr)
-// 3. Reemplaza 'TU_ID_FORMSPREE' por tu ID real
-const FORMSPREE_ID = 'TU_ID_FORMSPREE'
-// ─────────────────────────────────────────────────────────────────────────────
+const FORMSPREE_ID = 'mpqozgkv'
 
 const servicios = ['Diseño & Desarrollo Web', 'Posicionamiento SEO', 'Redes Sociales', 'Branding & Identidad', 'Marketing con IA', 'Otro / No sé aún']
 const presupuestos = ['Menos de 300€', '300€ – 600€', '600€ – 1.000€', 'Más de 1.000€', 'Aún no lo sé']
