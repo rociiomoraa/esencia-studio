@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
+const MotionLink = motion.create(Link)
+
 const links = [
   { to: '/servicios', label: 'Servicios' },
   { to: '/nosotros', label: 'Nosotros' },
@@ -17,6 +19,9 @@ export default function Navbar() {
   const [bannerHeight, setBannerHeight] = useState(0)
   const location = useLocation()
 
+  // Detectamos si la página actual es la de contacto para el modo oscuro
+  const isDarkPage = location.pathname === '/contacto'
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', onScroll)
@@ -30,7 +35,9 @@ export default function Navbar() {
     }
     measure()
     const observer = new MutationObserver(measure)
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true })
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true, attributes: true })
+    }
     window.addEventListener('resize', measure)
     return () => {
       observer.disconnect()
@@ -40,9 +47,12 @@ export default function Navbar() {
 
   useEffect(() => setOpen(false), [location])
 
-  // Cuando hay scroll, el nav se pega al top:0 con fondo
-  // Cuando estamos arriba del todo, el nav baja para dejar sitio al banner
   const navTop = scrolled ? 0 : bannerHeight
+
+  // Lógica de colores dinámica para el contraste
+  const logoColor = scrolled ? 'var(--black)' : (isDarkPage ? 'rgba(255, 255, 255, 1)' : 'var(--black)')
+  const linkColor = scrolled ? 'var(--gray)' : (isDarkPage ? 'rgba(255, 255, 255, 0.7)' : 'var(--gray)')
+  const activeLinkColor = scrolled ? 'var(--black)' : (isDarkPage ? 'rgba(255, 255, 255, 1)' : 'var(--black)')
 
   return (
     <>
@@ -56,9 +66,9 @@ export default function Navbar() {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: scrolled ? '1.1rem 4rem' : '1.6rem 4rem',
-          background: scrolled ? 'rgba(250,248,253,0.95)' : 'transparent',
+          background: scrolled ? 'rgba(250, 248, 253, 0.95)' : 'rgba(250, 248, 253, 0)',
           backdropFilter: scrolled ? 'blur(18px)' : 'none',
-          borderBottom: scrolled ? '1px solid var(--gray-light)' : 'none',
+          borderBottom: scrolled ? '1px solid var(--gray-light)' : '1px solid rgba(250, 248, 253, 0)',
           transition: 'background .3s, border-color .3s, padding .3s, top .25s',
         }}
         initial={{ y: -80, opacity: 0 }}
@@ -66,21 +76,47 @@ export default function Navbar() {
         transition={{ duration: .7, ease: [.16, 1, .3, 1] }}
       >
         <Link to="/" style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1, textDecoration: 'none' }}>
-          <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 600, letterSpacing: '.04em', color: 'var(--black)' }}>Esencia Studio</span>
-          <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--lila-deep)' }}>by Rocío García</span>
+          <motion.span 
+            animate={{ color: logoColor }}
+            style={{ 
+              fontFamily: 'var(--font-serif)', 
+              fontSize: '1.2rem', 
+              fontWeight: 600, 
+              letterSpacing: '.04em',
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            Esencia Studio
+          </motion.span>
+          <span style={{ 
+            fontSize: '.55rem', 
+            fontWeight: 500, 
+            letterSpacing: '.18em', 
+            textTransform: 'uppercase', 
+            color: 'var(--lila-deep)' 
+          }}>
+            by Rocío García
+          </span>
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop Menu */}
         <ul style={{ display: 'flex', gap: '2.2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }} className="nav-desktop">
           {links.map(l => (
             <li key={l.to}>
-              <NavLink to={l.to} active={location.pathname === l.to}>{l.label}</NavLink>
+              <NavLink 
+                to={l.to} 
+                active={location.pathname === l.to}
+                customColor={location.pathname === l.to ? activeLinkColor : linkColor}
+                hoverColor={activeLinkColor}
+              >
+                {l.label}
+              </NavLink>
             </li>
           ))}
           <li>
             <Link to="/contacto">
               <motion.button
-                style={{ padding: '.55rem 1.4rem', background: 'var(--lila-deep)', color: 'white', borderRadius: '100px', fontSize: '.68rem', fontWeight: 600, letterSpacing: '.1em', border: 'none', cursor: 'pointer' }}
+                style={{ padding: '.55rem 1.4rem', background: 'var(--lila-deep)', color: 'rgba(255, 255, 255, 1)', border: 'none', borderRadius: '100px', fontSize: '.68rem', fontWeight: 600, letterSpacing: '.1em', cursor: 'pointer' }}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: .97 }}
               >
@@ -94,13 +130,13 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(o => !o)}
           className="nav-mobile-toggle"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'none', padding: '.3rem' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'none', padding: '.3rem', color: logoColor }}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </motion.nav>
 
-      {/* Mobile menu — siempre debajo del nav, que mide ~62px */}
+      {/* Menú móvil */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -113,7 +149,7 @@ export default function Navbar() {
               top: (scrolled ? 0 : bannerHeight) + 62,
               left: 0, right: 0,
               zIndex: 199,
-              background: 'rgba(250,248,253,0.98)',
+              background: 'rgba(250, 248, 253, 0.98)',
               backdropFilter: 'blur(20px)',
               borderBottom: '1px solid var(--gray-light)',
               padding: '2rem 1.5rem',
@@ -126,7 +162,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link to="/contacto">
-              <button style={{ width: '100%', padding: '.8rem', background: 'var(--lila-deep)', color: 'white', border: 'none', borderRadius: '100px', fontSize: '.82rem', fontWeight: 600, cursor: 'pointer' }}>
+              <button style={{ width: '100%', padding: '.8rem', background: 'var(--lila-deep)', color: 'rgba(255, 255, 255, 1)', border: 'none', borderRadius: '100px', fontSize: '.82rem', fontWeight: 600, cursor: 'pointer' }}>
                 Contacto
               </button>
             </Link>
@@ -145,12 +181,19 @@ export default function Navbar() {
   )
 }
 
-function NavLink({ to, active, children }) {
+function NavLink({ to, active, children, customColor, hoverColor }) {
   return (
     <Link to={to} style={{ position: 'relative', display: 'inline-block', textDecoration: 'none' }}>
       <motion.span
-        style={{ fontSize: '.7rem', fontWeight: 500, letterSpacing: '.12em', textTransform: 'uppercase', color: active ? 'var(--black)' : 'var(--gray)', transition: 'color .25s' }}
-        whileHover={{ color: 'var(--black)' }}
+        animate={{ color: customColor }}
+        style={{ 
+          fontSize: '.7rem', 
+          fontWeight: 500, 
+          letterSpacing: '.12em', 
+          textTransform: 'uppercase', 
+        }}
+        transition={{ duration: 0.25 }}
+        whileHover={{ color: hoverColor }}
       >
         {children}
       </motion.span>
