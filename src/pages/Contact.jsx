@@ -110,7 +110,7 @@ export default function Contact() {
               {/* Redes */}
               <div style={{ display: 'flex', gap: '.7rem' }}>
                 {[
-                  { icon: Instagram, href: 'https://instagram.com/esenciastudio', label: 'Instagram' },
+                  { icon: Instagram, href: 'https://instagram.com/esencia.web', label: 'Instagram' },
                   { icon: Linkedin, href: 'https://linkedin.com/in/rociiogarciia', label: 'LinkedIn' },
                   { icon: Mail, href: 'mailto:hola@esenciastudio.es', label: 'Email' },
                 ].map(({ icon: Icon, href, label }) => (

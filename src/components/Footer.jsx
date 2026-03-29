@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
-                { icon: Instagram, href: 'https://instagram.com/esenciastudio', label: 'Instagram' },
+                { icon: Instagram, href: 'https://instagram.com/esencia.web', label: 'Instagram' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/rociiogarciia/', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:hola@esenciastudio.es', label: 'Email' },
               ].map(({ icon: Icon, href, label }) => (
